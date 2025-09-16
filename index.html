@@ -1,67 +1,197 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CAP Garland, LLC</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-      color: #333;
-    }
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    h1, h2 {
-      color: #003366;
-    }
-    .contact {
-      background: #fff;
-      padding: 20px;
-      border-left: 5px solid #003366;
-      margin-top: 30px;
-    }
-    footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 50px;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AMD Pest Management, LLC — Tracy, CA</title>
+<meta name="description" content="AMD Pest Management, LLC — fast, safe, eco-minded pest control in Tracy, CA 95376. Ants • Roaches • Rodents • Bed Bugs • Spiders • Wasps.">
+<style>
+  :root{
+    --pink:#ec4899;      /* brand pink */
+    --yellow:#facc15;    /* brand yellow */
+    --ink:#0f1220;       /* dark text */
+    --bg:#fff8fe;        /* page background w/ hint of pink */
+    --card:#ffffff;      /* cards */
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:var(--bg);color:#1a2133}
+  a{color:#111;text-decoration:none}
+
+  header{
+    background:linear-gradient(135deg,var(--pink),#8b1d5b);
+    color:#fff;text-align:center;padding:28px 16px;border-bottom:6px solid var(--yellow);
+    position:relative;overflow:hidden
+  }
+  header h1{margin:0;font-size:2.2rem;letter-spacing:.4px}
+  header p{margin:6px 0 0;opacity:.95}
+  header:after{
+    content:"";position:absolute;right:-70px;top:-70px;width:230px;height:230px;
+    background:radial-gradient(closest-side,rgba(250,204,21,.35),transparent 70%);
+    border-radius:50%;filter:blur(6px);animation:float 7s ease-in-out infinite
+  }
+  @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-18px,12px)}}
+
+  nav{background:#8b1d5b;text-align:center;padding:12px}
+  nav a{color:#fff;margin:0 14px;font-weight:700}
+  nav a:hover{color:var(--yellow)}
+
+  /* HERO */
+  .hero{max-width:1100px;margin:22px auto;display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:center;padding:0 14px}
+  .hero img{
+    width:100%;border-radius:14px;border:4px solid var(--yellow);object-fit:cover;
+    animation:pulse 2.8s ease-in-out infinite
+  }
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(250,204,21,0)}50%{box-shadow:0 0 0 14px rgba(250,204,21,.18)}}
+  .hero .box{background:var(--card);border-left:6px solid var(--pink);border-radius:14px;padding:16px}
+
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;background:#fff6d1;color:#5b4500;border:1px solid #ffe58f;
+    border-radius:999px;padding:6px 12px;margin:6px 6px 0 0;font-size:.9rem
+  }
+  .chip.pulse{animation:wiggle 2.2s ease-in-out infinite}
+  @keyframes wiggle{0%,100%{transform:rotate(0)}50%{transform:rotate(-3deg)}}
+
+  .section{max-width:1100px;margin:22px auto;background:var(--card);padding:22px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+  .section h2{margin:0 0 12px;color:var(--ink)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  ul{margin:0;padding-left:18px;line-height:1.8}
+
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+  .card{
+    background:#fff0f7;border:1px solid #ffd3ea;border-left:6px solid var(--pink);
+    border-radius:10px;padding:12px;transition:transform .2s ease, box-shadow .2s ease
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 10px 16px rgba(236,72,153,.16)}
+
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:14px}
+  .gallery img{
+    width:100%;border-radius:10px;border:2px solid var(--pink);object-fit:cover;aspect-ratio:4/3;
+    transition:transform .25s ease
+  }
+  .gallery img:hover{transform:scale(1.03)}
+
+  .cta{margin-top:12px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{background:var(--yellow);color:#1a1304;padding:12px 16px;border-radius:10px;font-weight:800}
+  .btn.secondary{background:#fff;color:#8b1d5b;border:2px solid #8b1d5b}
+
+  footer{background:#8b1d5b;color:#fff;text-align:center;padding:18px;margin-top:26px;border-top:6px solid var(--yellow)}
+
+  /* Floating action buttons */
+  .fab{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:9999}
+  .fab a{
+    display:inline-flex;align-items:center;gap:8px;padding:12px 14px;border-radius:999px;
+    color:#111;background:var(--yellow);box-shadow:0 10px 16px rgba(0,0,0,.18);font-weight:800
+  }
+  .fab a.email{background:#fff;border:2px solid #8b1d5b}
+  .fab a:hover{filter:brightness(1.05);transform:translateY(-1px)}
+
+  @media (max-width:900px){ .hero{grid-template-columns:1fr} }
+</style>
 </head>
 <body>
-  <header>
-    <h1>CAP Garland, LLC</h1>
-    <p>Private Investment Fund</p>
-  </header>
 
-  <section>
-    <h2>About Us</h2>
-    <p>CAP Garland, LLC is a Washington-based private investment fund focused on delivering value through diversified investment strategies.</p>
+<header>
+  <h1>AMD Pest Management, LLC</h1>
+  <p>Fast, safe & eco-minded pest control — Tracy, CA 95376</p>
+</header>
 
-    <h2>Contact</h2>
-    <div class="contact">
-      <p><strong>Address:</strong> 915 W 2nd Ave, Spokane, WA 99201</p>
-      <p><strong>Email:</strong> <a href="mailto:ryanberg@capgarland.shop">ryanberg@capgarland.shop</a></p>
-      <p><strong>Phone:</strong> (509) 822-3850</p>
+<nav>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#plans">Plans</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="https://www.southindiagroup.com/assets/images/pest-management-banner.png" alt="Pest control banner">
+  <div class="box">
+    <h2 style="margin:0 0 6px;">Protect your home. Protect your health.</h2>
+    <p>Licensed technicians, targeted treatments, family- & pet-conscious products, and clear service reports.</p>
+    <div>
+      <span class="chip pulse">🐜 Ants & Roaches</span>
+      <span class="chip">🐭 Rodents</span>
+      <span class="chip">🛏️ Bed Bugs</span>
+      <span class="chip">🕷️ Spiders & Wasps</span>
     </div>
-  </section>
+    <div class="cta">
+      <a class="btn" href="tel:+14173983318">Call: +1 (417) 398-3318</a>
+      <a class="btn secondary" href="mailto:admin@olemedsxc.shop">Email: admin@olemedsxc.shop</a>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    &copy; 2025 CAP Garland, LLC. All rights reserved.
-  </footer>
+<!-- ABOUT -->
+<section id="about" class="section">
+  <h2>About Us</h2>
+  <div class="two-col">
+    <p><strong>AMD Pest Management, LLC</strong> provides responsive pest control across <strong>Tracy, CA (95376)</strong> and nearby communities. We pair accurate inspections with the right mix of exclusion, baiting, and targeted applications to keep your spaces pest-free.</p>
+    <p><strong>Domaine:</strong> Pest Control Management • <strong>Email:</strong> <a href="mailto:admin@olemedsxc.shop">admin@olemedsxc.shop</a> • <strong>Phone:</strong> <a href="tel:+14173983318">+1 (417) 398-3318</a></p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <h2>Services</h2>
+  <div class="features">
+    <div class="card"><strong>Home Pest Control</strong><br/>Interior & exterior barrier, crack-and-crevice, baiting & monitoring.</div>
+    <div class="card"><strong>Rodent Control</strong><br/>Exclusion, sanitation guidance, traps & tamper-resistant stations.</div>
+    <div class="card"><strong>Bed Bug Treatments</strong><br/>Targeted protocols with follow-up inspections.</div>
+    <div class="card"><strong>Commercial Programs</strong><br/>Restaurants, warehouses, offices — detailed service logs.</div>
+    <div class="card"><strong>Yard & Perimeter</strong><br/>Wasps, spiders, earwigs & ant colonies around structures.</div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans" class="section">
+  <h2>Smart Plans</h2>
+  <div class="features">
+    <div class="card"><strong>One-Time Knockdown</strong><br/>Great for sudden outbreaks or move-in treatments.</div>
+    <div class="card"><strong>Quarterly Protection</strong><br/>Seasonal visits with free re-service between calls.</div>
+    <div class="card"><strong>Monthly Commercial</strong><br/>Compliance-ready documentation and trend reporting.</div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section">
+  <h2>In Action</h2>
+  <div class="gallery">
+    <img src="https://safekillpestcontrol.co.uk/wp-content/uploads/2021/09/Sprayer.jpg" alt="Technician spraying">
+    <img src="https://avatars.mds.yandex.net/i?id=bf0fc249e99d68ce217f555a0b8fbcfa_l-4884261-images-thumbs&ref=rim&n=13&w=1920&h=654" alt="Pest icons">
+    <img src="https://frankfurt.apollo.olxcdn.com/v1/files/pkojc2qh41171-KZ/image;s=644x461" alt="Rodent station">
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <h2>Contact & Hours</h2>
+  <div class="two-col">
+    <div>
+      <p>📧 <strong>Email:</strong> <a href="mailto:admin@olemedsxc.shop">admin@olemedsxc.shop</a></p>
+      <p>📞 <strong>Phone:</strong> <a href="tel:+14173983318">+1 (417) 398-3318</a></p>
+      <p>📍 <strong>Service Area:</strong> Tracy, CA 95376 and surrounding communities</p>
+    </div>
+    <div>
+      <p><em>Hours</em></p>
+      <ul>
+        <li>Mon–Sat: 8:00 – 18:00</li>
+        <li>Sun: Emergency service by appointment</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Floating Action Buttons -->
+<div class="fab">
+  <a class="call" href="tel:+14173983318">📞 Call Now</a>
+  <a class="email" href="mailto:admin@olemedsxc.shop?subject=Pest%20Control%20Quote&body=Name:%0AAddress:%0AIssue:%0APreferred%20time:%0A">✉️ Get a Quote</a>
+</div>
+
+<footer>
+  <p>&copy; 2025 AMD Pest Management, LLC — All rights reserved.</p>
+</footer>
+
 </body>
 </html>
